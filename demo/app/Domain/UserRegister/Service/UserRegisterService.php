@@ -18,7 +18,10 @@ class UserRegisterService
         $this->userRegisterEntity = $userRegisterEntity;
     }
 
-    /** @return array<mixed> */
+    /** 
+     * @param array $data
+     * @return array<mixed>
+     */
     public function register(array $data): array
     {
         $createdUser = UserFactory::userCreate(

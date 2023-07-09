@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserRegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\UserRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register-user', [UserRegisterController::class, 'registerAction'])->name('register-user');
+Route::post('/register-user', [UserRegisterController::class, 'registerAction'])
+    ->name('register-user');
+
+Route::post('/create-address', [AddressController::class, 'createAction'])
+    ->name('create-address');

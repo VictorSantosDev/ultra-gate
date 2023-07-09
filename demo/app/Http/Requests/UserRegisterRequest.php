@@ -78,7 +78,7 @@ class UserRegisterRequest extends FormRequest
         mixed $value,
         Closure $fail
     ): void {
-        if(!(new CPF)->validatorCpf($value)){
+        if (!(new CPF)->validatorCpf($value)) {
             $fail('O Cpf informado é inválido.');
         }
     }
