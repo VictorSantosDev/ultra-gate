@@ -21,6 +21,8 @@ interface AddressContract
 
     public function getNeighborhood(): ?string;
 
+    public function getNumber(): ?string;
+
     public function getLocality(): ?string;
 
     public function getUf(): ?string;

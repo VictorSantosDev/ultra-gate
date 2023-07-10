@@ -2,18 +2,31 @@
 
 namespace App\Domain\Address\Service;
 
+use Exception;
 use App\Data\DateTime\CreatedAt;
 use App\Data\DateTime\UpdatedAt;
 use App\Domain\Address\Factory\AddressFactory;
 use App\Domain\UserRegister\Service\UserSevice;
 use App\Domain\Address\Integration\VieCep\ViaCepApi;
+use App\Infrastructure\Address\Entity\AddressEntity;
+use App\Infrastructure\Address\Repository\AddressRepository;
+use App\Domain\Address\Infrastructure\Entity\InterfaceAddressEntity;
+use App\Domain\Address\Infrastructure\Repostiory\InterfaceAddressRepository;
 
 class AddressService
 {
     private UserSevice $userSevice;
     
-    public function __construct()
-    {
+    private InterfaceAddressEntity $addressEntity;
+
+    private InterfaceAddressRepository $addressRepository;
+    
+    public function __construct(
+        AddressEntity $addressEntity,
+        AddressRepository $addressRepository
+    ) {
+        $this->addressEntity = $addressEntity;
+        $this->addressRepository = $addressRepository;
         $this->userSevice = resolve(UserSevice::class);
     }
 
@@ -25,8 +38,8 @@ class AddressService
     {
         $user = $this->userSevice->getUserById($data['userId']);
 
-        // check addresses already exist
-        
+        $this->checkAddressExist($user->getId());
+
         $viaCep = (new ViaCepApi)->getAddress($data['cep']);
 
         $createAddress = AddressFactory::createAddress(
@@ -48,6 +61,15 @@ class AddressService
             null
         );
 
-        // save address
+        return $this->addressEntity->save($createAddress)->jsonSerialize();
+    }
+
+    private function checkAddressExist(int $userId): void
+    {
+        if ($this->addressRepository->getAddressByUserId($userId)) {
+            throw new Exception(
+                'O usuário já tem um endereço cadastrado, caso necessário atualize.'
+            );
+        }
     }
 }

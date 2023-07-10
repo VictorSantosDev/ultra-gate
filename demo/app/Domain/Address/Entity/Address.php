@@ -116,7 +116,7 @@ class Address implements AddressContract, \JsonSerializable
         return [
             'id' => $this->getId(),
             'userId' => $this->getUserId(),
-            'cep' => $this->getCep(),
+            'cep' => $this->getCep()->__toString(),
             'street' => $this->getStreet(),
             'complement' => $this->getComplement(),
             'neighborhood' => $this->getNeighborhood(),

@@ -15,7 +15,7 @@ class AddressController extends Controller
 
     public function __construct()
     {
-        $this->addressService = new AddressService();
+        $this->addressService = resolve(AddressService::class);
     }
 
     public function createAction(CreateAddressRequest $request)
