@@ -31,8 +31,8 @@ docker exec setup-php php artisan jwt:secret
 
 ✅ Sistema de autenticação JWT.
 
-### Pendente
+✅Depósito iniciado mas não concluído.
 
-❗Depósito iniciado mas não concluído.
+### Pendente
 
 ❗Transferência não iniciado e não concluído.
