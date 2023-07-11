@@ -10,10 +10,15 @@ use App\Domain\BankDeposit\Service\BanckDepositService;
 
 class BankAccountController extends Controller
 {
+    private BanckDepositService $banckDepositService;
+    
+    public function __construct()
+    {
+        $this->banckDepositService = new BanckDepositService;
+    }
 
     public function depositAction(DepositRequest $request)
     {
-        dd(4);
         try{
             $output = $this->banckDepositService->deposit($request->validated());
 
