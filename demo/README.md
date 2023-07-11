@@ -25,7 +25,7 @@ docker exec setup-php php artisan jwt:secret
 
 ✅ Cadastro de endereço do usuário com validação dos Campos e busca na Via Cep.
 
-✅ Integração com a pai Via Cep.
+✅ Integração com a API Via Cep.
 
 ✅ Criando conta assim que usuário é cadastrado.
 
@@ -35,4 +35,4 @@ docker exec setup-php php artisan jwt:secret
 
 ❗Depósito iniciado mas não concluído.
 
-❗Transferência não iniciado é não concluído.
+❗Transferência não iniciado e não concluído.
