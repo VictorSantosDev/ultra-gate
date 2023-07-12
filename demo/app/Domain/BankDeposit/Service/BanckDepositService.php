@@ -12,12 +12,12 @@ class BanckDepositService
 {
     private const DEP = 'DEP{{code}}';
 
-    private const LIMIT_DEPOSIT = 10000;
+    private const LIMIT_DEPOSIT = 1000;
 
     private const PROCESSED_STATE = 1;
-    
+
     private UserSevice $userSevice;
-    
+
     public function __construct()
     {
         $this->userSevice = resolve(UserSevice::class);
@@ -73,7 +73,7 @@ class BanckDepositService
         return str_replace('{{code}}', str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT), self::DEP);
     }
 
-    private function checkExistCount($bankCount): void
+    private function checkExistCount(?BankAccount $bankCount): void
     {
         if ($bankCount == null) {
             throw new Exception('Voce não possui uma conta, entre em contato com o suporte técnico.');
